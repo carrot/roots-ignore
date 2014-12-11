@@ -1,7 +1,7 @@
 {
   "name": "roots-ignore",
-  "version": "0.0.0",
-  "description": "A roots extension for selectively compiling a project for to improve speed in development.",
+  "version": "0.0.1",
+  "description": "A helper function for selectively compiling a roots project to improve speed in development.",
   "main": "lib",
   "directories": {
     "test": "test"
