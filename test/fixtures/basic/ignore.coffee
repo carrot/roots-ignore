@@ -1,10 +1,8 @@
 module.exports =
   blog:
-    files: ['blogging/**/*', 'views/blogging*']
-    extensions: ['RootsContentful']
+    files: ['blog/**/*']
+    extensions: ['RootsYAML']
     locals:
-      contentful: contentful_stub
+      wow: 'such stub'
     hook: (app) ->
-
-  case_studies:
-    files: ['case_studies/**/*']
+      app.locals.hook = 'manatoge'

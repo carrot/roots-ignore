@@ -1,10 +1,17 @@
 ignore = require '../../..'
+yaml   = require 'roots-yaml'
 
-module.exports =
+app =
   ignores: ["**/_*", "**/.DS_Store"]
   extensions: [
-    ignore [
-      'blog'
-      'case_studies'
-    ]
+    yaml()
   ]
+  locals:
+    wow: "original local"
+
+ignore app, [
+  'blog'
+  'case_studies'
+]
+
+module.exports = app

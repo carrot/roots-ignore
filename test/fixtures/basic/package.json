@@ -1,6 +1,7 @@
 {
   "name": "test",
   "dependencies": {
-    "jade": "*"
+    "jade": "*",
+    "roots-yaml": "0.0.4"
   }
 }
