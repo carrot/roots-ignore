@@ -6,7 +6,7 @@ Roots-ignore
 [![dependencies](https://david-dm.org/carrot/roots-ignore.png?theme=shields.io)](https://david-dm.org/carrot/roots-ignore)
 [![Coverage Status](https://img.shields.io/coveralls/carrot/roots-ignore.svg)](https://coveralls.io/r/carrot/roots-ignore?branch=master)
 
-A roots extension for selectively compiling a project to improve speed in
+A helper module for selectively compiling a roots project to improve speed in
 development.
 
 > **Note:** This project is in early development, and versioning is a little
@@ -22,75 +22,70 @@ Roots-ignore provides an easy way for developers bundle different ignore rules
 together, and then quickly comment in/out each bundle while they're developing
 in order to have roots ignore different parts of the site during compilation.
 
-### Installation
+### Installation & Usage
 
 - make sure you are in your roots project directory
 - `npm install roots-ignore --save`
-- modify your `app.coffee` file to include the extension, as such
+- define your `app.coffee` config object
+- pass it into the ignore function along with the ignore rules
+- export the resulting app object
 
-```coffee
-ignore = require('roots-ignore')
-
-module.exports =
-  extensions: [
-    ignore [
-      'blog'
-      'case_studies'
-      'netlify'
-    ]
-  ]
-```
-
-### Usage
-
-The extension is loaded through `app.coffee` by passing in an array of strings
-that specifies which ignore rules should be applied.
+This library should be loaded into your app.coffee, and accepts your app object
+as an argument along with an array of the "bundles" you wish to ignore.
 
 Ignore rules are defined in a file called `ignore.coffee` at the root of your
 project. This file should export an object with your ignore rules. Each key of
-the object is available as an argument to pass into the extension.
+the object is available as an argument to pass into the array.
 
 **Configuring app.coffee**
 
 For example I could have an `app.coffee` file with the following:
 
 ```coffee
+yaml    = require 'roots-yaml'
 ignore  = require 'roots-ignore'
 
-module.exports = 
+app =
   extensions: [
-    ignore [
-      'blog'
-      'case_studies'
-      'coding'
-      'single'
-      'netlify'
-     ]
+    yaml()
   ]
-```
 
-It's important that roots-ignore is the first extension to run. Otherwise, you
-may have some unexpected results. For example if I'm using the extension in a
-specific roots environment, I'd want to make sure to use `unshift` to add the
-extension to the main `app.coffee` file. For example
+  locals:
+    wow: 'such local'
 
-```coffee
-app     = require './app'
-ignore  = require 'roots-ignore'
-
-module.exports = app
-app.extensions.unshift ignore [
+ignore app, [
   'blog'
   'case_studies'
   'coding'
   'single'
   'netlify'
 ]
+
+module.exports = app
+```
+
+Sometimes you'll want to have the ignore rules apply only for a specific roots
+environment. Simply require the main `app.coffee` file and then pass that into
+the ignore function.
+
+```coffee
+app     = require './app'
+ignore  = require 'roots-ignore'
+
+ignore app, [
+  'blog'
+  'case_studies'
+  'coding'
+  'single'
+  'netlify'
+]
+
+module.exports = app
 ```
 
 **Creating ignore rules**
 
-I can then have an `ignore.coffee` file that looks like this:
+Ignore rules are defined in an object exported by `ignore.coffee`. For example:
 
 ```coffee
 module.exports =
