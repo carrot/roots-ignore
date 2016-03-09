@@ -12,12 +12,12 @@
   "devDependencies": {
     "coffee-script": "1.7.x",
     "mocha": "*",
-    "should": "*",
-    "roots": "3.x",
-    "roots-util": "0.0.4"
+    "roots": "3.x||4.x",
+    "roots-util": "^0.2.0",
+    "should": "*"
   },
   "peerDependencies": {
-    "roots": "3.x",
+    "roots": "3.x||4.x",
     "coveralls": "2.x",
     "istanbul": "0.3.x"
   },
