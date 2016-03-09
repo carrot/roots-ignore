@@ -8,12 +8,12 @@ h = new RootsUtil.Helpers(base: _path)
 
 # setup, teardown, and utils
 
-compile_fixture = (fixture_name, done) ->
+compile_fixture = (fixture_name) ->
   @public = path.join(fixture_name, 'public')
-  h.project.compile(Roots, fixture_name, -> done())
+  h.project.compile(Roots, fixture_name)
 
 before (done) ->
-  h.project.install_dependencies('*', done)
+  h.project.install_dependencies('*', -> done())
 
 after ->
   h.project.remove_folders('**/public')
@@ -22,7 +22,7 @@ after ->
 
 describe 'development', ->
 
-  before (done) -> compile_fixture.call(@, 'basic', done)
+  before (done) -> compile_fixture.call(@, 'basic').then(done)
 
   it 'ignores files listed in the ignore rules', ->
     p = path.join(@public, 'blog', 'index.html')
