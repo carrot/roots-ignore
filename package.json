@@ -16,11 +16,6 @@
     "roots-util": "^0.2.0",
     "should": "*"
   },
-  "peerDependencies": {
-    "roots": "3.x||4.x",
-    "coveralls": "2.x",
-    "istanbul": "0.3.x"
-  },
   "scripts": {
     "test": "mocha",
     "coverage": "make build; NODE_ENV=test istanbul cover ./node_modules/mocha/bin/_mocha; make unbuild; open coverage/lcov-report/index.html;",
