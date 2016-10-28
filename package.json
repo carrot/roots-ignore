@@ -1,6 +1,6 @@
 {
   "name": "roots-ignore",
-  "version": "0.0.2",
+  "version": "0.0.3",
   "description": "A helper function for selectively compiling a roots project to improve speed in development.",
   "main": "lib",
   "directories": {
@@ -18,7 +18,7 @@
     "roots-util": "^0.2.0",
     "should": "*"
   },
-  "peerDependencies": {		
+  "peerDependencies": {
     "roots": "3.x - 5.x"
   },
   "scripts": {
