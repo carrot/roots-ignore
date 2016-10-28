@@ -11,15 +11,12 @@
   },
   "devDependencies": {
     "coffee-script": "1.7.x",
+    "coveralls": "2.x",
+    "istanbul": "0.3.x",
     "mocha": "*",
     "roots": "3.x - 5.x",
     "roots-util": "^0.2.0",
     "should": "*"
-  },
-  "peerDependencies": {
-    "roots": "3.x||4.x",
-    "coveralls": "2.x",
-    "istanbul": "0.3.x"
   },
   "scripts": {
     "test": "mocha",
